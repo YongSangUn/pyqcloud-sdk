@@ -1,0 +1,49 @@
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling"]
+
+[project]
+name = "pyqcloud-sdk"
+# version = "0.0.0" # dynamic version by [tool.hatch.version]
+dynamic = ["version"]
+description = "A wrapper for tencentcloud-sdk-python-common"
+readme = "README.md"
+authors = [{ name = "YongSangUn", email = "sangun.yong@gmail.com" }]
+license = { text = "MIT" }
+keywords = ["tencentcloud", "sdk", "wrapper", "python"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+requires-python = ">=3.6"
+dependencies = ["tencentcloud-sdk-python-common>=3.0.1182", "requests"]
+
+[tool.hatch.version]
+path = "src/pyqcloud_sdk/__init__.py"
+
+[project.urls]
+Homepage = "https://github.com/YongSangUn/pyqcloud-sdk"
+Source = "https://github.com/YongSangUn/pyqcloud-sdk"
+Tracker = "https://github.com/YongSangUn/pyqcloud-sdk/issues"
+
+[tool.black]
+line-length = 119
+
+[tool.ruff]
+# Same as Black.
+line-length = 119
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# include endpoints infomation
+[tool.setuptools.package-data]
+"qcloud_sdk_py.data" = ["endpoints_*.json"]
