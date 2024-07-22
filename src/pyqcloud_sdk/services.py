@@ -7,7 +7,7 @@ from typing import Dict, List, Optional
 
 from .logging import logger
 from .base import QcloudBase
-from .exceptions import ServiceConfigError
+from .exceptions import ServiceError, ServiceJsonLoadError, ServiceJsonNotFoundError
 
 
 class Services(QcloudBase):
@@ -43,21 +43,21 @@ class Services(QcloudBase):
     def _check(self, data):
         if data is None:
             logger.error(f"Service '{self._n}' not found")
-            raise ServiceConfigError(f"Service '{self._n}' not found")
+            raise ServiceError(f"Service '{self._n}' not found")
         if data.get("api_versions") is None:
             logger.error(f"Service '{self._n}' apiVersion is None")
-            raise ServiceConfigError(f"Service '{self._n}' apiVersion is None")
+            raise ServiceError(f"Service '{self._n}' apiVersion is None")
         if data.get("endpoint") is None:
             logger.error(f"Service '{self._n}' endpoint is None")
-            raise ServiceConfigError(f"Service '{self._n}' endpoint is None")
+            raise ServiceError(f"Service '{self._n}' endpoint is None")
         if data.get("service") is None:
             logger.error(f"Service '{self._n}' service is None")
-            raise ServiceConfigError(f"Service '{self._n}' service is None")
+            raise ServiceError(f"Service '{self._n}' service is None")
 
         # Check if the given version is available.
         if self._v is not None and self._v not in data.get("api_versions"):
             logger.error(f"Service '{self._n}' has no such api-version as '{self._v}'")
-            raise ServiceConfigError(
+            raise ServiceError(
                 f"Service '{self._n}' has no such api-version as '{self._v}', ava versions {data.get('api_versions')}"
             )
 
@@ -68,12 +68,15 @@ class Services(QcloudBase):
         json_files = list(data_dir.glob("endpoints_*.json"))
         if not json_files:
             logger.error("No api_info JSON files found")
-            raise FileNotFoundError("No api_info JSON files found")
+            raise ServiceJsonNotFoundError("No api_info JSON files found")
         filename = max(json_files)
 
         with open(filename, "r") as f:
             logger.info(f"Loading API info from {filename}")
-            return json.load(f)
+            try:
+                return json.load(f)
+            except Exception as err:
+                raise ServiceJsonLoadError(f"Loading error: {err}")
 
     @property
     def version(self) -> str:
