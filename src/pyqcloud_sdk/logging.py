@@ -1,22 +1,39 @@
 import logging
 import sys
+from typing import Optional, TextIO
 
 DEFAULT_LOG_LEVEL = logging.WARNING
 DEFAULT_LOG_FORMAT = "%(asctime)s - %(levelname)s - %(name)s - %(message)s"
 
-logger = logging.getLogger(__name__)
-logger.addHandler(logging.NullHandler())
+
+def get_logger(name: Optional[str] = None) -> logging.Logger:
+    logger = logging.getLogger(name or __name__)
+    if not logger.handlers:
+        logger.addHandler(logging.NullHandler())
+    if logger.level == logging.NOTSET:
+        logger.setLevel(DEFAULT_LOG_LEVEL)
+    return logger
 
 
-def setup_logging(level=DEFAULT_LOG_LEVEL, format=DEFAULT_LOG_FORMAT, stream=sys.stderr):
-    """
-    Configures the root logger.
+def setup_logging(
+    level: int = DEFAULT_LOG_LEVEL,
+    format: str = DEFAULT_LOG_FORMAT,
+    stream: TextIO = sys.stderr,
+    logger_name: Optional[str] = None,
+) -> None:
+    logger = get_logger(logger_name)
+    logger.setLevel(level)
 
-    Args:
-        level (int, optional): The logging level. Defaults to logging.WARNING.
-        format (str, optional): The log message format. Defaults to DEFAULT_LOG_FORMAT.
-        stream (TextIOWrapper, optional): The output stream. Defaults to sys.stderr.
-    """
+    # Remove all existing handlers
+    for handler in logger.handlers[:]:
+        logger.removeHandler(handler)
+
     handler = logging.StreamHandler(stream)
     handler.setFormatter(logging.Formatter(format))
-    logging.basicConfig(level=level, handlers=[handler])
+    logger.addHandler(handler)
+
+    # Prevent the log messages from being passed to the root logger
+    logger.propagate = False
+
+
+logger = get_logger()
