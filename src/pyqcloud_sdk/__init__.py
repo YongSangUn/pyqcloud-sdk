@@ -7,9 +7,12 @@ from .config import Config
 from .services import Services
 
 from .exceptions import (
-    TencentCloudAPIError,
-    ServiceConfigError,
-    QcloudExceptrion,
+    ServiceError,
+    ServiceJsonNotFoundError,
+    ServiceJsonLoadError,
+    ClientError,
+    ConfigError,
+    AuthenticationError,
 )
 
 from .logging import logger

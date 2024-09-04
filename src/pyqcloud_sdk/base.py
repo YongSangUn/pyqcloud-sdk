@@ -3,7 +3,7 @@
 
 import os
 from time import sleep
-from typing import Tuple, Union
+from typing import Any
 
 from tencentcloud.common.common_client import CommonClient
 from tencentcloud.common.credential import Credential
@@ -11,18 +11,17 @@ from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentClo
 from tencentcloud.common.profile.client_profile import ClientProfile
 from tencentcloud.common.profile.http_profile import HttpProfile
 
-from .logging import logger
-from .exceptions import QcloudExceptrion
 from .config import Config
+from .exceptions import AuthenticationError, ClientError, ConfigError
+from .logging import logger
 
 
 class QcloudBase:
     def __init__(self, service_config: dict):
         self.config = Config()
         self.config._deserialize(service_config)
-        if not self.config.Region:
-            raise QcloudExceptrion("RegionError", "Parameter 'region' is None")
-        logger.info(f"QcloudBase initialized with region: {self.config.Region}")
+        # if not self.config.Region:
+        #     raise ConfigError("Parameter 'region' is None")
 
     def set_region(self, region: str):
         self.config.Region = region
@@ -36,7 +35,7 @@ class QcloudBase:
         self.config.SecretId = secretId
         logger.info("SecretId set.")
 
-    def set_secret_from_env(
+    def _try_set_secret_from_env(
         self,
         id_env_name: str = "TENCENTCLOUD_SECRET_ID",
         key_env_name: str = "TENCENTCLOUD_SECRET_KEY",
@@ -54,8 +53,8 @@ class QcloudBase:
     def new_client(self) -> CommonClient:
         if not self.config.SecretId or not self.config.SecretKey:
             logger.warning("SecretId or SecretKey is None, attempting to use environment values.")
-            if not self.set_secret_from_env():
-                raise QcloudExceptrion("SecretParamsError", "SecretId or SecretKey is not set")
+            if not self._try_set_secret_from_env():
+                raise AuthenticationError("SecretId or SecretKey is not set")
 
         cred = Credential(self.config.SecretId, self.config.SecretKey)
         httpProfile = HttpProfile()
@@ -74,33 +73,39 @@ class QcloudBase:
             profile=clientProfile,
         )
 
-    def call(
-        self, action: str, action_params: dict, headers: dict = {}
-    ) -> Union[Tuple[None, dict], Tuple[str, Exception]]:
+    def call(self, action: str, action_params: dict = {}, headers: dict = {}) -> Any:
         try:
             client = self.new_client()
             logger.info(f"Calling action: {action} with params: {action_params}")
             resp = client.call_json(action, action_params, headers=headers)
-            return None, resp
-        except QcloudExceptrion as err:
-            logger.error(f"QcloudExceptrion: {err}")
-            return err.code, err
+            return resp
+        except AuthenticationError as err:
+            logger.error(f"Authentication Error: {err}")
+            raise err
+        except ClientError as err:
+            logger.error(f"Client Error: {err}")
+            raise err
         except TencentCloudSDKException as err:
-            logger.error(f"TencentCloudSDKException: {err}")
-            return err.code, err  # type: ignore
+            raise err
 
     def call_with_retry(
         self, action: str, action_params: dict, max_retries: int = 5, retries: int = 0, retry_time: int = 5
-    ) -> Tuple[Union[None, str], Union[dict, Exception]]:
-        err, resp = self.call(action=action, action_params=action_params)
-        if err:
-            err_msg = str(resp)
-            if "tasks are being processed" in err_msg or "task is working" in err_msg:
+    ) -> Any:
+        """Calls Tencent Cloud API, retries if encountering errors related to ongoing tasks."""
+
+        try:
+            return self.call(action=action, action_params=action_params)
+        except TencentCloudSDKException as err:
+            if "tasks are being processed" in str(err) or "task is working" in str(err):
                 if retries < max_retries:
-                    logger.info(f"Task is being processed, retrying {retries + 1}/{max_retries}")
+                    retries += 1
+                    logger.info(f"Task is being processed, retrying {retries}/{max_retries}")
                     sleep(retry_time)
-                    return self.call_with_retry(action, action_params, max_retries, retries + 1, retry_time)
+                    return self.call_with_retry(action, action_params, max_retries, retries, retry_time)
                 else:
                     logger.error("Maximum number of retries reached.")
-                    return err, resp
-        return err, resp
+                    raise err
+            else:
+                raise err
+        except Exception as err:
+            return err
