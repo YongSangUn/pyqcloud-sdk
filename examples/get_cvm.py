@@ -2,7 +2,6 @@ import logging
 
 from pyqcloud_sdk import Services
 
-
 logging.basicConfig(level=logging.INFO)
 
 
