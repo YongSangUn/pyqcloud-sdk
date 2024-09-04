@@ -1,18 +1,36 @@
 # -*- coding: utf-8 -*-
 
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 
 from .base import QcloudBase
 from .config import Config
-from .services import Services
-
 from .exceptions import (
-    ServiceError,
-    ServiceJsonNotFoundError,
-    ServiceJsonLoadError,
+    APIError,
+    AuthenticationError,
     ClientError,
     ConfigError,
-    AuthenticationError,
+    QcloudWrapperError,
+    ServerError,
+    ServiceDefinitionError,
+    ServiceDiscoveryError,
+    ServiceNotFoundError,
 )
+from .logging import logger, setup_logging
+from .services import Services
 
-from .logging import logger
+__all__ = [
+    "QcloudBase",
+    "Config",
+    "Services",
+    "QcloudWrapperError",
+    "ConfigError",
+    "AuthenticationError",
+    "ServiceDiscoveryError",
+    "ServiceNotFoundError",
+    "ServiceDefinitionError",
+    "APIError",
+    "ClientError",
+    "ServerError",
+    "logger",
+    "setup_logging",
+]
