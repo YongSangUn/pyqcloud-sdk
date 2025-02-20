@@ -1,0 +1,1884 @@
+{
+  "aa": {
+    "api_versions": [
+      "2020-02-24"
+    ],
+    "endpoint": "aa.tencentcloudapi.com",
+    "service": "aa"
+  },
+  "aai": {
+    "api_versions": [
+      "2018-05-22"
+    ],
+    "endpoint": "aai.tencentcloudapi.com",
+    "service": "aai"
+  },
+  "aca": {
+    "api_versions": [
+      "2021-03-23"
+    ],
+    "endpoint": "aca.tencentcloudapi.com",
+    "service": "aca"
+  },
+  "acp": {
+    "api_versions": [
+      "2022-01-05"
+    ],
+    "endpoint": "acp.tencentcloudapi.com",
+    "service": "acp"
+  },
+  "advisor": {
+    "api_versions": [
+      "2020-07-21"
+    ],
+    "endpoint": "advisor.tencentcloudapi.com",
+    "service": "advisor"
+  },
+  "af": {
+    "api_versions": [
+      "2020-02-26"
+    ],
+    "endpoint": "af.tencentcloudapi.com",
+    "service": "af"
+  },
+  "afc": {
+    "api_versions": [
+      "2020-02-26"
+    ],
+    "endpoint": "afc.tencentcloudapi.com",
+    "service": "afc"
+  },
+  "aiart": {
+    "api_versions": [
+      "2022-12-29"
+    ],
+    "endpoint": "aiart.tencentcloudapi.com",
+    "service": "aiart"
+  },
+  "ame": {
+    "api_versions": [
+      "2019-09-16"
+    ],
+    "endpoint": "ame.tencentcloudapi.com",
+    "service": "ame"
+  },
+  "ams": {
+    "api_versions": [
+      "2020-06-08",
+      "2020-12-29"
+    ],
+    "endpoint": "ams.tencentcloudapi.com",
+    "service": "ams"
+  },
+  "anicloud": {
+    "api_versions": [
+      "2022-09-23"
+    ],
+    "endpoint": "anicloud.tencentcloudapi.com",
+    "service": "anicloud"
+  },
+  "antiddos": {
+    "api_versions": [
+      "2020-03-09"
+    ],
+    "endpoint": "antiddos.tencentcloudapi.com",
+    "service": "antiddos"
+  },
+  "apcas": {
+    "api_versions": [
+      "2020-11-27"
+    ],
+    "endpoint": "apcas.tencentcloudapi.com",
+    "service": "apcas"
+  },
+  "ape": {
+    "api_versions": [
+      "2020-05-13"
+    ],
+    "endpoint": "ape.tencentcloudapi.com",
+    "service": "ape"
+  },
+  "api": {
+    "api_versions": [
+      "2020-11-06"
+    ],
+    "endpoint": "api.tencentcloudapi.com",
+    "service": "api"
+  },
+  "apigateway": {
+    "api_versions": [
+      "2018-08-08"
+    ],
+    "endpoint": "apigateway.tencentcloudapi.com",
+    "service": "apigateway"
+  },
+  "apm": {
+    "api_versions": [
+      "2021-06-22"
+    ],
+    "endpoint": "apm.tencentcloudapi.com",
+    "service": "apm"
+  },
+  "asr": {
+    "api_versions": [
+      "2019-06-14"
+    ],
+    "endpoint": "asr.tencentcloudapi.com",
+    "service": "asr"
+  },
+  "asw": {
+    "api_versions": [
+      "2020-07-22"
+    ],
+    "endpoint": "asw.tencentcloudapi.com",
+    "service": "asw"
+  },
+  "as": {
+    "api_versions": [
+      "2018-04-19"
+    ],
+    "endpoint": "as.tencentcloudapi.com",
+    "service": "as"
+  },
+  "ba": {
+    "api_versions": [
+      "2020-07-20"
+    ],
+    "endpoint": "ba.tencentcloudapi.com",
+    "service": "ba"
+  },
+  "batch": {
+    "api_versions": [
+      "2017-03-12"
+    ],
+    "endpoint": "batch.tencentcloudapi.com",
+    "service": "batch"
+  },
+  "bda": {
+    "api_versions": [
+      "2020-03-24"
+    ],
+    "endpoint": "bda.tencentcloudapi.com",
+    "service": "bda"
+  },
+  "bh": {
+    "api_versions": [
+      "2023-04-18"
+    ],
+    "endpoint": "bh.tencentcloudapi.com",
+    "service": "bh"
+  },
+  "bi": {
+    "api_versions": [
+      "2022-01-05"
+    ],
+    "endpoint": "bi.tencentcloudapi.com",
+    "service": "bi"
+  },
+  "billing": {
+    "api_versions": [
+      "2018-07-09"
+    ],
+    "endpoint": "billing.tencentcloudapi.com",
+    "service": "billing"
+  },
+  "bizlive": {
+    "api_versions": [
+      "2019-03-13"
+    ],
+    "endpoint": "bizlive.tencentcloudapi.com",
+    "service": "bizlive"
+  },
+  "bm": {
+    "api_versions": [
+      "2018-04-23"
+    ],
+    "endpoint": "bm.tencentcloudapi.com",
+    "service": "bm"
+  },
+  "bma": {
+    "api_versions": [
+      "2021-06-24",
+      "2022-11-15"
+    ],
+    "endpoint": "bma.tencentcloudapi.com",
+    "service": "bma"
+  },
+  "bmeip": {
+    "api_versions": [
+      "2018-06-25"
+    ],
+    "endpoint": "bmeip.tencentcloudapi.com",
+    "service": "bmeip"
+  },
+  "bmlb": {
+    "api_versions": [
+      "2018-06-25"
+    ],
+    "endpoint": "bmlb.tencentcloudapi.com",
+    "service": "bmlb"
+  },
+  "bmvpc": {
+    "api_versions": [
+      "2018-06-25"
+    ],
+    "endpoint": "bmvpc.tencentcloudapi.com",
+    "service": "bmvpc"
+  },
+  "bpaas": {
+    "api_versions": [
+      "2018-12-17"
+    ],
+    "endpoint": "bpaas.tencentcloudapi.com",
+    "service": "bpaas"
+  },
+  "bri": {
+    "api_versions": [
+      "2019-03-28"
+    ],
+    "endpoint": "bri.tencentcloudapi.com",
+    "service": "bri"
+  },
+  "bsca": {
+    "api_versions": [
+      "2021-08-11"
+    ],
+    "endpoint": "bsca.tencentcloudapi.com",
+    "service": "bsca"
+  },
+  "btoe": {
+    "api_versions": [
+      "2021-03-03",
+      "2021-05-14"
+    ],
+    "endpoint": "btoe.tencentcloudapi.com",
+    "service": "btoe"
+  },
+  "ca": {
+    "api_versions": [
+      "2023-02-28"
+    ],
+    "endpoint": "ca.tencentcloudapi.com",
+    "service": "ca"
+  },
+  "cam": {
+    "api_versions": [
+      "2019-01-16"
+    ],
+    "endpoint": "cam.tencentcloudapi.com",
+    "service": "cam"
+  },
+  "captcha": {
+    "api_versions": [
+      "2019-07-22"
+    ],
+    "endpoint": "captcha.tencentcloudapi.com",
+    "service": "captcha"
+  },
+  "car": {
+    "api_versions": [
+      "2022-01-10"
+    ],
+    "endpoint": "car.tencentcloudapi.com",
+    "service": "car"
+  },
+  "cat": {
+    "api_versions": [
+      "2018-04-09"
+    ],
+    "endpoint": "cat.tencentcloudapi.com",
+    "service": "cat"
+  },
+  "cbs": {
+    "api_versions": [
+      "2017-03-12"
+    ],
+    "endpoint": "cbs.tencentcloudapi.com",
+    "service": "cbs"
+  },
+  "ccc": {
+    "api_versions": [
+      "2020-02-10"
+    ],
+    "endpoint": "ccc.tencentcloudapi.com",
+    "service": "ccc"
+  },
+  "cdb": {
+    "api_versions": [
+      "2017-03-20"
+    ],
+    "endpoint": "cdb.tencentcloudapi.com",
+    "service": "cdb"
+  },
+  "cdc": {
+    "api_versions": [
+      "2020-12-14"
+    ],
+    "endpoint": "cdc.tencentcloudapi.com",
+    "service": "cdc"
+  },
+  "cdn": {
+    "api_versions": [
+      "2018-06-06"
+    ],
+    "endpoint": "cdn.tencentcloudapi.com",
+    "service": "cdn"
+  },
+  "cds": {
+    "api_versions": [
+      "2018-04-20"
+    ],
+    "endpoint": "cds.tencentcloudapi.com",
+    "service": "cds"
+  },
+  "cdwch": {
+    "api_versions": [
+      "2020-09-15"
+    ],
+    "endpoint": "cdwch.tencentcloudapi.com",
+    "service": "cdwch"
+  },
+  "cdwdoris": {
+    "api_versions": [
+      "2021-12-28"
+    ],
+    "endpoint": "cdwdoris.tencentcloudapi.com",
+    "service": "cdwdoris"
+  },
+  "cdwpg": {
+    "api_versions": [
+      "2020-12-30"
+    ],
+    "endpoint": "cdwpg.tencentcloudapi.com",
+    "service": "cdwpg"
+  },
+  "cdz": {
+    "api_versions": [
+      "2022-11-23"
+    ],
+    "endpoint": "cdz.tencentcloudapi.com",
+    "service": "cdz"
+  },
+  "cfg": {
+    "api_versions": [
+      "2021-08-20"
+    ],
+    "endpoint": "cfg.tencentcloudapi.com",
+    "service": "cfg"
+  },
+  "cfs": {
+    "api_versions": [
+      "2019-07-19"
+    ],
+    "endpoint": "cfs.tencentcloudapi.com",
+    "service": "cfs"
+  },
+  "cfw": {
+    "api_versions": [
+      "2019-09-04"
+    ],
+    "endpoint": "cfw.tencentcloudapi.com",
+    "service": "cfw"
+  },
+  "chdfs": {
+    "api_versions": [
+      "2019-07-18",
+      "2020-11-12"
+    ],
+    "endpoint": "chdfs.tencentcloudapi.com",
+    "service": "chdfs"
+  },
+  "ciam": {
+    "api_versions": [
+      "2022-03-31"
+    ],
+    "endpoint": "ciam.tencentcloudapi.com",
+    "service": "ciam"
+  },
+  "cii": {
+    "api_versions": [
+      "2020-12-10",
+      "2021-04-08"
+    ],
+    "endpoint": "cii.tencentcloudapi.com",
+    "service": "cii"
+  },
+  "cim": {
+    "api_versions": [
+      "2019-03-18"
+    ],
+    "endpoint": "cim.tencentcloudapi.com",
+    "service": "cim"
+  },
+  "cis": {
+    "api_versions": [
+      "2018-04-08"
+    ],
+    "endpoint": "cis.tencentcloudapi.com",
+    "service": "cis"
+  },
+  "ckafka": {
+    "api_versions": [
+      "2019-08-19"
+    ],
+    "endpoint": "ckafka.tencentcloudapi.com",
+    "service": "ckafka"
+  },
+  "clb": {
+    "api_versions": [
+      "2018-03-17"
+    ],
+    "endpoint": "clb.tencentcloudapi.com",
+    "service": "clb"
+  },
+  "cloudapp": {
+    "api_versions": [
+      "2022-05-30"
+    ],
+    "endpoint": "cloudapp.tencentcloudapi.com",
+    "service": "cloudapp"
+  },
+  "cloudaudit": {
+    "api_versions": [
+      "2019-03-19"
+    ],
+    "endpoint": "cloudaudit.tencentcloudapi.com",
+    "service": "cloudaudit"
+  },
+  "cloudhsm": {
+    "api_versions": [
+      "2019-11-12"
+    ],
+    "endpoint": "cloudhsm.tencentcloudapi.com",
+    "service": "cloudhsm"
+  },
+  "cloudstudio": {
+    "api_versions": [
+      "2023-05-08"
+    ],
+    "endpoint": "cloudstudio.tencentcloudapi.com",
+    "service": "cloudstudio"
+  },
+  "cls": {
+    "api_versions": [
+      "2020-10-16"
+    ],
+    "endpoint": "cls.tencentcloudapi.com",
+    "service": "cls"
+  },
+  "cme": {
+    "api_versions": [
+      "2019-10-29"
+    ],
+    "endpoint": "cme.tencentcloudapi.com",
+    "service": "cme"
+  },
+  "cmq": {
+    "api_versions": [
+      "2019-03-04"
+    ],
+    "endpoint": "cmq.tencentcloudapi.com",
+    "service": "cmq"
+  },
+  "cms": {
+    "api_versions": [
+      "2019-03-21"
+    ],
+    "endpoint": "cms.tencentcloudapi.com",
+    "service": "cms"
+  },
+  "": {
+    "api_versions": [
+      ""
+    ],
+    "endpoint": "",
+    "service": ""
+  },
+  "config": {
+    "api_versions": [
+      "2022-08-02"
+    ],
+    "endpoint": "config.tencentcloudapi.com",
+    "service": "config"
+  },
+  "controlcenter": {
+    "api_versions": [
+      "2023-01-10"
+    ],
+    "endpoint": "controlcenter.tencentcloudapi.com",
+    "service": "controlcenter"
+  },
+  "cpdp": {
+    "api_versions": [
+      "2019-08-20"
+    ],
+    "endpoint": "cpdp.tencentcloudapi.com",
+    "service": "cpdp"
+  },
+  "csip": {
+    "api_versions": [
+      "2022-11-21"
+    ],
+    "endpoint": "csip.tencentcloudapi.com",
+    "service": "csip"
+  },
+  "csxg": {
+    "api_versions": [
+      "2023-03-03"
+    ],
+    "endpoint": "csxg.tencentcloudapi.com",
+    "service": "csxg"
+  },
+  "cvm": {
+    "api_versions": [
+      "2017-03-12"
+    ],
+    "endpoint": "cvm.tencentcloudapi.com",
+    "service": "cvm"
+  },
+  "cwp": {
+    "api_versions": [
+      "2018-02-28"
+    ],
+    "endpoint": "cwp.tencentcloudapi.com",
+    "service": "cwp"
+  },
+  "cws": {
+    "api_versions": [
+      "2018-03-12"
+    ],
+    "endpoint": "cws.tencentcloudapi.com",
+    "service": "cws"
+  },
+  "cynosdb": {
+    "api_versions": [
+      "2019-01-07"
+    ],
+    "endpoint": "cynosdb.tencentcloudapi.com",
+    "service": "cynosdb"
+  },
+  "dasb": {
+    "api_versions": [
+      "2019-10-18"
+    ],
+    "endpoint": "dasb.tencentcloudapi.com",
+    "service": "dasb"
+  },
+  "dataintegration": {
+    "api_versions": [
+      "2022-06-13"
+    ],
+    "endpoint": "dataintegration.tencentcloudapi.com",
+    "service": "dataintegration"
+  },
+  "dayu": {
+    "api_versions": [
+      "2018-07-09"
+    ],
+    "endpoint": "dayu.tencentcloudapi.com",
+    "service": "dayu"
+  },
+  "dbbrain": {
+    "api_versions": [
+      "2019-10-16",
+      "2021-05-27"
+    ],
+    "endpoint": "dbbrain.tencentcloudapi.com",
+    "service": "dbbrain"
+  },
+  "dbdc": {
+    "api_versions": [
+      "2020-10-29"
+    ],
+    "endpoint": "dbdc.tencentcloudapi.com",
+    "service": "dbdc"
+  },
+  "dc": {
+    "api_versions": [
+      "2018-04-10"
+    ],
+    "endpoint": "dc.tencentcloudapi.com",
+    "service": "dc"
+  },
+  "dcdb": {
+    "api_versions": [
+      "2018-04-11"
+    ],
+    "endpoint": "dcdb.tencentcloudapi.com",
+    "service": "dcdb"
+  },
+  "dlc": {
+    "api_versions": [
+      "2021-01-25"
+    ],
+    "endpoint": "dlc.tencentcloudapi.com",
+    "service": "dlc"
+  },
+  "dnspod": {
+    "api_versions": [
+      "2021-03-23"
+    ],
+    "endpoint": "dnspod.tencentcloudapi.com",
+    "service": "dnspod"
+  },
+  "domain": {
+    "api_versions": [
+      "2018-08-08"
+    ],
+    "endpoint": "domain.tencentcloudapi.com",
+    "service": "domain"
+  },
+  "drm": {
+    "api_versions": [
+      "2018-11-15"
+    ],
+    "endpoint": "drm.tencentcloudapi.com",
+    "service": "drm"
+  },
+  "ds": {
+    "api_versions": [
+      "2018-05-23"
+    ],
+    "endpoint": "ds.tencentcloudapi.com",
+    "service": "ds"
+  },
+  "dsgc": {
+    "api_versions": [
+      "2019-07-23"
+    ],
+    "endpoint": "dsgc.tencentcloudapi.com",
+    "service": "dsgc"
+  },
+  "dtf": {
+    "api_versions": [
+      "2020-05-06"
+    ],
+    "endpoint": "dtf.tencentcloudapi.com",
+    "service": "dtf"
+  },
+  "dts": {
+    "api_versions": [
+      "2018-03-30",
+      "2021-12-06"
+    ],
+    "endpoint": "dts.tencentcloudapi.com",
+    "service": "dts"
+  },
+  "eb": {
+    "api_versions": [
+      "2021-04-16"
+    ],
+    "endpoint": "eb.tencentcloudapi.com",
+    "service": "eb"
+  },
+  "ecc": {
+    "api_versions": [
+      "2018-12-13"
+    ],
+    "endpoint": "ecc.tencentcloudapi.com",
+    "service": "ecc"
+  },
+  "ecdn": {
+    "api_versions": [
+      "2019-10-12"
+    ],
+    "endpoint": "ecdn.tencentcloudapi.com",
+    "service": "ecdn"
+  },
+  "ecm": {
+    "api_versions": [
+      "2019-07-19"
+    ],
+    "endpoint": "ecm.tencentcloudapi.com",
+    "service": "ecm"
+  },
+  "eiam": {
+    "api_versions": [
+      "2021-04-20"
+    ],
+    "endpoint": "eiam.tencentcloudapi.com",
+    "service": "eiam"
+  },
+  "eis": {
+    "api_versions": [
+      "2020-07-15",
+      "2021-06-01"
+    ],
+    "endpoint": "eis.tencentcloudapi.com",
+    "service": "eis"
+  },
+  "emr": {
+    "api_versions": [
+      "2019-01-03"
+    ],
+    "endpoint": "emr.tencentcloudapi.com",
+    "service": "emr"
+  },
+  "es": {
+    "api_versions": [
+      "2018-04-16"
+    ],
+    "endpoint": "es.tencentcloudapi.com",
+    "service": "es"
+  },
+  "ess": {
+    "api_versions": [
+      "2020-11-11"
+    ],
+    "endpoint": "ess.tencentcloudapi.com",
+    "service": "ess"
+  },
+  "essbasic": {
+    "api_versions": [
+      "2020-12-22",
+      "2021-05-26"
+    ],
+    "endpoint": "essbasic.tencentcloudapi.com",
+    "service": "essbasic"
+  },
+  "facefusion": {
+    "api_versions": [
+      "2018-12-01",
+      "2022-09-27"
+    ],
+    "endpoint": "facefusion.tencentcloudapi.com",
+    "service": "facefusion"
+  },
+  "faceid": {
+    "api_versions": [
+      "2018-03-01"
+    ],
+    "endpoint": "faceid.tencentcloudapi.com",
+    "service": "faceid"
+  },
+  "fmu": {
+    "api_versions": [
+      "2019-12-13"
+    ],
+    "endpoint": "fmu.tencentcloudapi.com",
+    "service": "fmu"
+  },
+  "ft": {
+    "api_versions": [
+      "2020-03-04"
+    ],
+    "endpoint": "ft.tencentcloudapi.com",
+    "service": "ft"
+  },
+  "gaap": {
+    "api_versions": [
+      "2018-05-29"
+    ],
+    "endpoint": "gaap.tencentcloudapi.com",
+    "service": "gaap"
+  },
+  "gme": {
+    "api_versions": [
+      "2018-07-11"
+    ],
+    "endpoint": "gme.tencentcloudapi.com",
+    "service": "gme"
+  },
+  "goosefs": {
+    "api_versions": [
+      "2022-05-19"
+    ],
+    "endpoint": "goosefs.tencentcloudapi.com",
+    "service": "goosefs"
+  },
+  "gpm": {
+    "api_versions": [
+      "2020-08-20"
+    ],
+    "endpoint": "gpm.tencentcloudapi.com",
+    "service": "gpm"
+  },
+  "gs": {
+    "api_versions": [
+      "2019-11-18"
+    ],
+    "endpoint": "gs.tencentcloudapi.com",
+    "service": "gs"
+  },
+  "gse": {
+    "api_versions": [
+      "2019-11-12"
+    ],
+    "endpoint": "gse.tencentcloudapi.com",
+    "service": "gse"
+  },
+  "gwlb": {
+    "api_versions": [
+      "2024-09-06"
+    ],
+    "endpoint": "gwlb.tencentcloudapi.com",
+    "service": "gwlb"
+  },
+  "habo": {
+    "api_versions": [
+      "2018-12-03"
+    ],
+    "endpoint": "habo.tencentcloudapi.com",
+    "service": "habo"
+  },
+  "hai": {
+    "api_versions": [
+      "2023-08-12"
+    ],
+    "endpoint": "hai.tencentcloudapi.com",
+    "service": "hai"
+  },
+  "hasim": {
+    "api_versions": [
+      "2021-07-16"
+    ],
+    "endpoint": "hasim.tencentcloudapi.com",
+    "service": "hasim"
+  },
+  "hcm": {
+    "api_versions": [
+      "2018-11-06"
+    ],
+    "endpoint": "hcm.tencentcloudapi.com",
+    "service": "hcm"
+  },
+  "hunyuan": {
+    "api_versions": [
+      "2023-09-01"
+    ],
+    "endpoint": "hunyuan.tencentcloudapi.com",
+    "service": "hunyuan"
+  },
+  "iai": {
+    "api_versions": [
+      "2018-03-01",
+      "2020-03-03"
+    ],
+    "endpoint": "iai.tencentcloudapi.com",
+    "service": "iai"
+  },
+  "iap": {
+    "api_versions": [
+      "2024-07-13"
+    ],
+    "endpoint": "iap.tencentcloudapi.com",
+    "service": "iap"
+  },
+  "ic": {
+    "api_versions": [
+      "2019-03-07"
+    ],
+    "endpoint": "ic.tencentcloudapi.com",
+    "service": "ic"
+  },
+  "icr": {
+    "api_versions": [
+      "2021-10-14"
+    ],
+    "endpoint": "icr.tencentcloudapi.com",
+    "service": "icr"
+  },
+  "ie": {
+    "api_versions": [
+      "2020-03-04"
+    ],
+    "endpoint": "ie.tencentcloudapi.com",
+    "service": "ie"
+  },
+  "iecp": {
+    "api_versions": [
+      "2021-09-14"
+    ],
+    "endpoint": "iecp.tencentcloudapi.com",
+    "service": "iecp"
+  },
+  "ig": {
+    "api_versions": [
+      "2021-05-18"
+    ],
+    "endpoint": "ig.tencentcloudapi.com",
+    "service": "ig"
+  },
+  "iir": {
+    "api_versions": [
+      "2020-04-17"
+    ],
+    "endpoint": "iir.tencentcloudapi.com",
+    "service": "iir"
+  },
+  "ims": {
+    "api_versions": [
+      "2020-07-13",
+      "2020-12-29"
+    ],
+    "endpoint": "ims.tencentcloudapi.com",
+    "service": "ims"
+  },
+  "ioa": {
+    "api_versions": [
+      "2022-06-01"
+    ],
+    "endpoint": "ioa.tencentcloudapi.com",
+    "service": "ioa"
+  },
+  "iot": {
+    "api_versions": [
+      "2018-01-23"
+    ],
+    "endpoint": "iot.tencentcloudapi.com",
+    "service": "iot"
+  },
+  "iotcloud": {
+    "api_versions": [
+      "2018-06-14",
+      "2021-04-08"
+    ],
+    "endpoint": "iotcloud.tencentcloudapi.com",
+    "service": "iotcloud"
+  },
+  "iotexplorer": {
+    "api_versions": [
+      "2019-04-23"
+    ],
+    "endpoint": "iotexplorer.tencentcloudapi.com",
+    "service": "iotexplorer"
+  },
+  "iottid": {
+    "api_versions": [
+      "2019-04-11"
+    ],
+    "endpoint": "iottid.tencentcloudapi.com",
+    "service": "iottid"
+  },
+  "iotvideo": {
+    "api_versions": [
+      "2019-11-26",
+      "2020-12-15",
+      "2021-11-25"
+    ],
+    "endpoint": "iotvideo.tencentcloudapi.com",
+    "service": "iotvideo"
+  },
+  "iotvideoindustry": {
+    "api_versions": [
+      "2020-12-01"
+    ],
+    "endpoint": "iotvideoindustry.tencentcloudapi.com",
+    "service": "iotvideoindustry"
+  },
+  "irp": {
+    "api_versions": [
+      "2022-03-24",
+      "2022-08-05"
+    ],
+    "endpoint": "irp.tencentcloudapi.com",
+    "service": "irp"
+  },
+  "iss": {
+    "api_versions": [
+      "2023-05-17"
+    ],
+    "endpoint": "iss.tencentcloudapi.com",
+    "service": "iss"
+  },
+  "ivld": {
+    "api_versions": [
+      "2021-09-03"
+    ],
+    "endpoint": "ivld.tencentcloudapi.com",
+    "service": "ivld"
+  },
+  "keewidb": {
+    "api_versions": [
+      "2022-03-08"
+    ],
+    "endpoint": "keewidb.tencentcloudapi.com",
+    "service": "keewidb"
+  },
+  "kms": {
+    "api_versions": [
+      "2019-01-18"
+    ],
+    "endpoint": "kms.tencentcloudapi.com",
+    "service": "kms"
+  },
+  "lcic": {
+    "api_versions": [
+      "2022-08-17"
+    ],
+    "endpoint": "lcic.tencentcloudapi.com",
+    "service": "lcic"
+  },
+  "lighthouse": {
+    "api_versions": [
+      "2020-03-24"
+    ],
+    "endpoint": "lighthouse.tencentcloudapi.com",
+    "service": "lighthouse"
+  },
+  "live": {
+    "api_versions": [
+      "2018-08-01"
+    ],
+    "endpoint": "live.tencentcloudapi.com",
+    "service": "live"
+  },
+  "lke": {
+    "api_versions": [
+      "2023-11-30"
+    ],
+    "endpoint": "lke.tencentcloudapi.com",
+    "service": "lke"
+  },
+  "lkeap": {
+    "api_versions": [
+      "2024-05-22"
+    ],
+    "endpoint": "lkeap.tencentcloudapi.com",
+    "service": "lkeap"
+  },
+  "lowcode": {
+    "api_versions": [
+      "2021-01-08"
+    ],
+    "endpoint": "lowcode.tencentcloudapi.com",
+    "service": "lowcode"
+  },
+  "lp": {
+    "api_versions": [
+      "2020-02-24"
+    ],
+    "endpoint": "lp.tencentcloudapi.com",
+    "service": "lp"
+  },
+  "mall": {
+    "api_versions": [
+      "2023-05-18"
+    ],
+    "endpoint": "mall.tencentcloudapi.com",
+    "service": "mall"
+  },
+  "mariadb": {
+    "api_versions": [
+      "2017-03-12"
+    ],
+    "endpoint": "mariadb.tencentcloudapi.com",
+    "service": "mariadb"
+  },
+  "market": {
+    "api_versions": [
+      "2019-10-10"
+    ],
+    "endpoint": "market.tencentcloudapi.com",
+    "service": "market"
+  },
+  "memcached": {
+    "api_versions": [
+      "2019-03-18"
+    ],
+    "endpoint": "memcached.tencentcloudapi.com",
+    "service": "memcached"
+  },
+  "mgobe": {
+    "api_versions": [
+      "2019-09-29",
+      "2020-10-14"
+    ],
+    "endpoint": "mgobe.tencentcloudapi.com",
+    "service": "mgobe"
+  },
+  "mmps": {
+    "api_versions": [
+      "2020-07-10"
+    ],
+    "endpoint": "mmps.tencentcloudapi.com",
+    "service": "mmps"
+  },
+  "mna": {
+    "api_versions": [
+      "2021-01-19"
+    ],
+    "endpoint": "mna.tencentcloudapi.com",
+    "service": "mna"
+  },
+  "mongodb": {
+    "api_versions": [
+      "2018-04-08",
+      "2019-07-25"
+    ],
+    "endpoint": "mongodb.tencentcloudapi.com",
+    "service": "mongodb"
+  },
+  "monitor": {
+    "api_versions": [
+      "2018-07-24",
+      "2023-06-16"
+    ],
+    "endpoint": "monitor.tencentcloudapi.com",
+    "service": "monitor"
+  },
+  "mps": {
+    "api_versions": [
+      "2019-06-12"
+    ],
+    "endpoint": "mps.tencentcloudapi.com",
+    "service": "mps"
+  },
+  "mqtt": {
+    "api_versions": [
+      "2024-05-16"
+    ],
+    "endpoint": "mqtt.tencentcloudapi.com",
+    "service": "mqtt"
+  },
+  "mrs": {
+    "api_versions": [
+      "2020-09-10"
+    ],
+    "endpoint": "mrs.tencentcloudapi.com",
+    "service": "mrs"
+  },
+  "ms": {
+    "api_versions": [
+      "2018-04-08"
+    ],
+    "endpoint": "ms.tencentcloudapi.com",
+    "service": "ms"
+  },
+  "msp": {
+    "api_versions": [
+      "2018-03-19"
+    ],
+    "endpoint": "msp.tencentcloudapi.com",
+    "service": "msp"
+  },
+  "mvj": {
+    "api_versions": [
+      "2019-09-26"
+    ],
+    "endpoint": "mvj.tencentcloudapi.com",
+    "service": "mvj"
+  },
+  "nlp": {
+    "api_versions": [
+      "2019-04-08"
+    ],
+    "endpoint": "nlp.tencentcloudapi.com",
+    "service": "nlp"
+  },
+  "npp": {
+    "api_versions": [
+      "2019-08-23"
+    ],
+    "endpoint": "npp.tencentcloudapi.com",
+    "service": "npp"
+  },
+  "oceanus": {
+    "api_versions": [
+      "2019-04-22"
+    ],
+    "endpoint": "oceanus.tencentcloudapi.com",
+    "service": "oceanus"
+  },
+  "ocr": {
+    "api_versions": [
+      "2018-11-19"
+    ],
+    "endpoint": "ocr.tencentcloudapi.com",
+    "service": "ocr"
+  },
+  "omics": {
+    "api_versions": [
+      "2022-11-28"
+    ],
+    "endpoint": "omics.tencentcloudapi.com",
+    "service": "omics"
+  },
+  "organization": {
+    "api_versions": [
+      "2018-12-25",
+      "2021-03-31"
+    ],
+    "endpoint": "organization.tencentcloudapi.com",
+    "service": "organization"
+  },
+  "partners": {
+    "api_versions": [
+      "2018-03-21"
+    ],
+    "endpoint": "partners.tencentcloudapi.com",
+    "service": "partners"
+  },
+  "pds": {
+    "api_versions": [
+      "2021-07-01"
+    ],
+    "endpoint": "pds.tencentcloudapi.com",
+    "service": "pds"
+  },
+  "postgres": {
+    "api_versions": [
+      "2017-03-12"
+    ],
+    "endpoint": "postgres.tencentcloudapi.com",
+    "service": "postgres"
+  },
+  "privatedns": {
+    "api_versions": [
+      "2020-10-28"
+    ],
+    "endpoint": "privatedns.tencentcloudapi.com",
+    "service": "privatedns"
+  },
+  "pts": {
+    "api_versions": [
+      "2021-07-28"
+    ],
+    "endpoint": "pts.tencentcloudapi.com",
+    "service": "pts"
+  },
+  "rce": {
+    "api_versions": [
+      "2020-11-03"
+    ],
+    "endpoint": "rce.tencentcloudapi.com",
+    "service": "rce"
+  },
+  "redis": {
+    "api_versions": [
+      "2018-04-12"
+    ],
+    "endpoint": "redis.tencentcloudapi.com",
+    "service": "redis"
+  },
+  "region": {
+    "api_versions": [
+      "2022-06-27"
+    ],
+    "endpoint": "region.tencentcloudapi.com",
+    "service": "region"
+  },
+  "rkp": {
+    "api_versions": [
+      "2019-12-09"
+    ],
+    "endpoint": "rkp.tencentcloudapi.com",
+    "service": "rkp"
+  },
+  "rp": {
+    "api_versions": [
+      "2020-02-24"
+    ],
+    "endpoint": "rp.tencentcloudapi.com",
+    "service": "rp"
+  },
+  "rum": {
+    "api_versions": [
+      "2021-06-22"
+    ],
+    "endpoint": "rum.tencentcloudapi.com",
+    "service": "rum"
+  },
+  "scf": {
+    "api_versions": [
+      "2018-04-16"
+    ],
+    "endpoint": "scf.tencentcloudapi.com",
+    "service": "scf"
+  },
+  "ses": {
+    "api_versions": [
+      "2020-10-02"
+    ],
+    "endpoint": "ses.tencentcloudapi.com",
+    "service": "ses"
+  },
+  "smh": {
+    "api_versions": [
+      "2021-07-12"
+    ],
+    "endpoint": "smh.tencentcloudapi.com",
+    "service": "smh"
+  },
+  "smop": {
+    "api_versions": [
+      "2020-12-03"
+    ],
+    "endpoint": "smop.tencentcloudapi.com",
+    "service": "smop"
+  },
+  "smpn": {
+    "api_versions": [
+      "2019-08-22"
+    ],
+    "endpoint": "smpn.tencentcloudapi.com",
+    "service": "smpn"
+  },
+  "sms": {
+    "api_versions": [
+      "2019-07-11",
+      "2021-01-11"
+    ],
+    "endpoint": "sms.tencentcloudapi.com",
+    "service": "sms"
+  },
+  "soe": {
+    "api_versions": [
+      "2018-07-24"
+    ],
+    "endpoint": "soe.tencentcloudapi.com",
+    "service": "soe"
+  },
+  "solar": {
+    "api_versions": [
+      "2018-10-11"
+    ],
+    "endpoint": "solar.tencentcloudapi.com",
+    "service": "solar"
+  },
+  "sqlserver": {
+    "api_versions": [
+      "2018-03-28"
+    ],
+    "endpoint": "sqlserver.tencentcloudapi.com",
+    "service": "sqlserver"
+  },
+  "ssa": {
+    "api_versions": [
+      "2018-06-08"
+    ],
+    "endpoint": "ssa.tencentcloudapi.com",
+    "service": "ssa"
+  },
+  "ssl": {
+    "api_versions": [
+      "2019-12-05"
+    ],
+    "endpoint": "ssl.tencentcloudapi.com",
+    "service": "ssl"
+  },
+  "sslpod": {
+    "api_versions": [
+      "2019-06-05"
+    ],
+    "endpoint": "sslpod.tencentcloudapi.com",
+    "service": "sslpod"
+  },
+  "ssm": {
+    "api_versions": [
+      "2019-09-23"
+    ],
+    "endpoint": "ssm.tencentcloudapi.com",
+    "service": "ssm"
+  },
+  "sts": {
+    "api_versions": [
+      "2018-08-13"
+    ],
+    "endpoint": "sts.tencentcloudapi.com",
+    "service": "sts"
+  },
+  "svp": {
+    "api_versions": [
+      "2024-01-25"
+    ],
+    "endpoint": "svp.tencentcloudapi.com",
+    "service": "svp"
+  },
+  "taf": {
+    "api_versions": [
+      "2020-02-10"
+    ],
+    "endpoint": "taf.tencentcloudapi.com",
+    "service": "taf"
+  },
+  "tag": {
+    "api_versions": [
+      "2018-08-13"
+    ],
+    "endpoint": "tag.tencentcloudapi.com",
+    "service": "tag"
+  },
+  "tan": {
+    "api_versions": [
+      "2022-04-20"
+    ],
+    "endpoint": "tan.tencentcloudapi.com",
+    "service": "tan"
+  },
+  "tat": {
+    "api_versions": [
+      "2020-10-28"
+    ],
+    "endpoint": "tat.tencentcloudapi.com",
+    "service": "tat"
+  },
+  "tav": {
+    "api_versions": [
+      "2019-01-18"
+    ],
+    "endpoint": "tav.tencentcloudapi.com",
+    "service": "tav"
+  },
+  "tbaas": {
+    "api_versions": [
+      "2018-04-16"
+    ],
+    "endpoint": "tbaas.tencentcloudapi.com",
+    "service": "tbaas"
+  },
+  "tbm": {
+    "api_versions": [
+      "2018-01-29"
+    ],
+    "endpoint": "tbm.tencentcloudapi.com",
+    "service": "tbm"
+  },
+  "tbp": {
+    "api_versions": [
+      "2019-03-11",
+      "2019-06-27"
+    ],
+    "endpoint": "tbp.tencentcloudapi.com",
+    "service": "tbp"
+  },
+  "tcaplusdb": {
+    "api_versions": [
+      "2019-08-23"
+    ],
+    "endpoint": "tcaplusdb.tencentcloudapi.com",
+    "service": "tcaplusdb"
+  },
+  "tcb": {
+    "api_versions": [
+      "2018-06-08"
+    ],
+    "endpoint": "tcb.tencentcloudapi.com",
+    "service": "tcb"
+  },
+  "tcbr": {
+    "api_versions": [
+      "2022-02-17"
+    ],
+    "endpoint": "tcbr.tencentcloudapi.com",
+    "service": "tcbr"
+  },
+  "tccatalog": {
+    "api_versions": [
+      "2024-10-24"
+    ],
+    "endpoint": "tccatalog.tencentcloudapi.com",
+    "service": "tccatalog"
+  },
+  "tcex": {
+    "api_versions": [
+      "2020-07-27"
+    ],
+    "endpoint": "tcex.tencentcloudapi.com",
+    "service": "tcex"
+  },
+  "tchd": {
+    "api_versions": [
+      "2023-03-06"
+    ],
+    "endpoint": "tchd.tencentcloudapi.com",
+    "service": "tchd"
+  },
+  "tci": {
+    "api_versions": [
+      "2019-03-18"
+    ],
+    "endpoint": "tci.tencentcloudapi.com",
+    "service": "tci"
+  },
+  "tcm": {
+    "api_versions": [
+      "2021-04-13"
+    ],
+    "endpoint": "tcm.tencentcloudapi.com",
+    "service": "tcm"
+  },
+  "tcr": {
+    "api_versions": [
+      "2019-09-24"
+    ],
+    "endpoint": "tcr.tencentcloudapi.com",
+    "service": "tcr"
+  },
+  "tcss": {
+    "api_versions": [
+      "2020-11-01"
+    ],
+    "endpoint": "tcss.tencentcloudapi.com",
+    "service": "tcss"
+  },
+  "tdcpg": {
+    "api_versions": [
+      "2021-11-18"
+    ],
+    "endpoint": "tdcpg.tencentcloudapi.com",
+    "service": "tdcpg"
+  },
+  "tdid": {
+    "api_versions": [
+      "2021-05-19"
+    ],
+    "endpoint": "tdid.tencentcloudapi.com",
+    "service": "tdid"
+  },
+  "tdmq": {
+    "api_versions": [
+      "2020-02-17"
+    ],
+    "endpoint": "tdmq.tencentcloudapi.com",
+    "service": "tdmq"
+  },
+  "tds": {
+    "api_versions": [
+      "2022-08-01"
+    ],
+    "endpoint": "tds.tencentcloudapi.com",
+    "service": "tds"
+  },
+  "tem": {
+    "api_versions": [
+      "2020-12-21",
+      "2021-07-01"
+    ],
+    "endpoint": "tem.tencentcloudapi.com",
+    "service": "tem"
+  },
+  "teo": {
+    "api_versions": [
+      "2022-01-06",
+      "2022-09-01"
+    ],
+    "endpoint": "teo.tencentcloudapi.com",
+    "service": "teo"
+  },
+  "thpc": {
+    "api_versions": [
+      "2021-11-09",
+      "2022-04-01",
+      "2023-03-21"
+    ],
+    "endpoint": "thpc.tencentcloudapi.com",
+    "service": "thpc"
+  },
+  "tia": {
+    "api_versions": [
+      "2018-02-26"
+    ],
+    "endpoint": "tia.tencentcloudapi.com",
+    "service": "tia"
+  },
+  "tic": {
+    "api_versions": [
+      "2020-11-17"
+    ],
+    "endpoint": "tic.tencentcloudapi.com",
+    "service": "tic"
+  },
+  "ticm": {
+    "api_versions": [
+      "2018-11-27"
+    ],
+    "endpoint": "ticm.tencentcloudapi.com",
+    "service": "ticm"
+  },
+  "tics": {
+    "api_versions": [
+      "2018-11-15"
+    ],
+    "endpoint": "tics.tencentcloudapi.com",
+    "service": "tics"
+  },
+  "tiems": {
+    "api_versions": [
+      "2019-04-16"
+    ],
+    "endpoint": "tiems.tencentcloudapi.com",
+    "service": "tiems"
+  },
+  "tiia": {
+    "api_versions": [
+      "2019-05-29"
+    ],
+    "endpoint": "tiia.tencentcloudapi.com",
+    "service": "tiia"
+  },
+  "tione": {
+    "api_versions": [
+      "2019-10-22",
+      "2021-11-11"
+    ],
+    "endpoint": "tione.tencentcloudapi.com",
+    "service": "tione"
+  },
+  "tiw": {
+    "api_versions": [
+      "2019-09-19"
+    ],
+    "endpoint": "tiw.tencentcloudapi.com",
+    "service": "tiw"
+  },
+  "tke": {
+    "api_versions": [
+      "2018-05-25",
+      "2022-05-01"
+    ],
+    "endpoint": "tke.tencentcloudapi.com",
+    "service": "tke"
+  },
+  "tkgdq": {
+    "api_versions": [
+      "2019-04-11"
+    ],
+    "endpoint": "tkgdq.tencentcloudapi.com",
+    "service": "tkgdq"
+  },
+  "tms": {
+    "api_versions": [
+      "2020-07-13",
+      "2020-12-29"
+    ],
+    "endpoint": "tms.tencentcloudapi.com",
+    "service": "tms"
+  },
+  "tmt": {
+    "api_versions": [
+      "2018-03-21"
+    ],
+    "endpoint": "tmt.tencentcloudapi.com",
+    "service": "tmt"
+  },
+  "tourism": {
+    "api_versions": [
+      "2023-02-15"
+    ],
+    "endpoint": "tourism.tencentcloudapi.com",
+    "service": "tourism"
+  },
+  "trabbit": {
+    "api_versions": [
+      "2023-04-18"
+    ],
+    "endpoint": "trabbit.tencentcloudapi.com",
+    "service": "trabbit"
+  },
+  "trdp": {
+    "api_versions": [
+      "2022-07-26"
+    ],
+    "endpoint": "trdp.tencentcloudapi.com",
+    "service": "trdp"
+  },
+  "trocket": {
+    "api_versions": [
+      "2023-03-08"
+    ],
+    "endpoint": "trocket.tencentcloudapi.com",
+    "service": "trocket"
+  },
+  "trp": {
+    "api_versions": [
+      "2021-05-15"
+    ],
+    "endpoint": "trp.tencentcloudapi.com",
+    "service": "trp"
+  },
+  "trro": {
+    "api_versions": [
+      "2022-03-25"
+    ],
+    "endpoint": "trro.tencentcloudapi.com",
+    "service": "trro"
+  },
+  "trtc": {
+    "api_versions": [
+      "2019-07-22"
+    ],
+    "endpoint": "trtc.tencentcloudapi.com",
+    "service": "trtc"
+  },
+  "tse": {
+    "api_versions": [
+      "2020-12-07"
+    ],
+    "endpoint": "tse.tencentcloudapi.com",
+    "service": "tse"
+  },
+  "tsf": {
+    "api_versions": [
+      "2018-03-26"
+    ],
+    "endpoint": "tsf.tencentcloudapi.com",
+    "service": "tsf"
+  },
+  "tsi": {
+    "api_versions": [
+      "2021-03-25"
+    ],
+    "endpoint": "tsi.tencentcloudapi.com",
+    "service": "tsi"
+  },
+  "tsw": {
+    "api_versions": [
+      "2020-09-24",
+      "2021-04-12"
+    ],
+    "endpoint": "tsw.tencentcloudapi.com",
+    "service": "tsw"
+  },
+  "tts": {
+    "api_versions": [
+      "2019-08-23"
+    ],
+    "endpoint": "tts.tencentcloudapi.com",
+    "service": "tts"
+  },
+  "ump": {
+    "api_versions": [
+      "2020-09-18"
+    ],
+    "endpoint": "ump.tencentcloudapi.com",
+    "service": "ump"
+  },
+  "vcg": {
+    "api_versions": [
+      "2024-04-04"
+    ],
+    "endpoint": "vcg.tencentcloudapi.com",
+    "service": "vcg"
+  },
+  "vclm": {
+    "api_versions": [
+      "2024-05-23"
+    ],
+    "endpoint": "vclm.tencentcloudapi.com",
+    "service": "vclm"
+  },
+  "vcube": {
+    "api_versions": [
+      "2022-04-10"
+    ],
+    "endpoint": "vcube.tencentcloudapi.com",
+    "service": "vcube"
+  },
+  "vdb": {
+    "api_versions": [
+      "2023-06-16"
+    ],
+    "endpoint": "vdb.tencentcloudapi.com",
+    "service": "vdb"
+  },
+  "vm": {
+    "api_versions": [
+      "2020-07-09",
+      "2020-12-29",
+      "2021-09-22"
+    ],
+    "endpoint": "vm.tencentcloudapi.com",
+    "service": "vm"
+  },
+  "vms": {
+    "api_versions": [
+      "2020-09-02"
+    ],
+    "endpoint": "vms.tencentcloudapi.com",
+    "service": "vms"
+  },
+  "vod": {
+    "api_versions": [
+      "2018-07-17",
+      "2024-07-18"
+    ],
+    "endpoint": "vod.tencentcloudapi.com",
+    "service": "vod"
+  },
+  "vpc": {
+    "api_versions": [
+      "2017-03-12"
+    ],
+    "endpoint": "vpc.tencentcloudapi.com",
+    "service": "vpc"
+  },
+  "vrs": {
+    "api_versions": [
+      "2020-08-24"
+    ],
+    "endpoint": "vrs.tencentcloudapi.com",
+    "service": "vrs"
+  },
+  "vtc": {
+    "api_versions": [
+      "2024-02-23"
+    ],
+    "endpoint": "vtc.tencentcloudapi.com",
+    "service": "vtc"
+  },
+  "waf": {
+    "api_versions": [
+      "2018-01-25"
+    ],
+    "endpoint": "waf.tencentcloudapi.com",
+    "service": "waf"
+  },
+  "wav": {
+    "api_versions": [
+      "2021-01-29"
+    ],
+    "endpoint": "wav.tencentcloudapi.com",
+    "service": "wav"
+  },
+  "wedata": {
+    "api_versions": [
+      "2021-08-20"
+    ],
+    "endpoint": "wedata.tencentcloudapi.com",
+    "service": "wedata"
+  },
+  "weilingwith": {
+    "api_versions": [
+      "2023-04-27"
+    ],
+    "endpoint": "weilingwith.tencentcloudapi.com",
+    "service": "weilingwith"
+  },
+  "wss": {
+    "api_versions": [
+      "2018-04-26"
+    ],
+    "endpoint": "wss.tencentcloudapi.com",
+    "service": "wss"
+  },
+  "yinsuda": {
+    "api_versions": [
+      "2022-05-27"
+    ],
+    "endpoint": "yinsuda.tencentcloudapi.com",
+    "service": "yinsuda"
+  },
+  "youmall": {
+    "api_versions": [
+      "2018-02-28"
+    ],
+    "endpoint": "youmall.tencentcloudapi.com",
+    "service": "youmall"
+  },
+  "yunjing": {
+    "api_versions": [
+      "2018-02-28"
+    ],
+    "endpoint": "yunjing.tencentcloudapi.com",
+    "service": "yunjing"
+  },
+  "yunsou": {
+    "api_versions": [
+      "2018-05-04",
+      "2019-11-15"
+    ],
+    "endpoint": "yunsou.tencentcloudapi.com",
+    "service": "yunsou"
+  }
+}

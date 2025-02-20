@@ -100,7 +100,7 @@ class Services(QcloudBase):
             ServiceDiscoveryError: If no API info JSON files are found or if there's an error loading them.
         """
         data_dir = Path(__file__).parent / "data"
-        json_files = list(data_dir.glob("endpoints_*.json"))
+        json_files = list(data_dir.glob("endpoints.json"))
         if not json_files:
             raise ServiceDiscoveryError("No api_info JSON files found")
         filename = max(json_files)
