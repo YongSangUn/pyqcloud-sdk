@@ -1,68 +1,72 @@
 name: Update API Endpoints
 
 on:
-  # Check upstream SDK updates periodically
   schedule:
-    - cron: "0 0 * * 1" # Run every Monday
-  # Support manual trigger
-  workflow_dispatch:
-    inputs:
-      force_update:
-        description: "Force update"
-        required: false
-        default: false
+    - cron: "0 0 * * *" # 每天 UTC 00:00 运行
+  workflow_dispatch: # 允许手动触发
 
 jobs:
-  check-sdk-update:
+  update-endpoints:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
     steps:
-      - uses: actions/checkout@v2
-      - name: Checkout TencentCloud SDK
-        uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
-          repository: TencentCloud/tencentcloud-sdk-python
-          ref: master
-          path: tencentcloud-sdk-python
+          fetch-depth: 0 # 获取完整历史以确保分支操作正常
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: "3.x"
 
-      - name: Check SDK Version and Update Endpoints
-        id: check-version
+      - name: Install dependencies
         run: |
-          current_version=$(grep -oP "(?<=__version__ = ['\"])[^'\"]*(?=['\"])" tencentcloud-sdk-python/tencentcloud/__init__.py 2>/dev/null)
-          local_version=$(cat src/pyqcloud_sdk/data/.sdk-version)
-          if [ "$current_version" != "$local_version" ] && [ "$(printf '%s\n' "$local_version" "$current_version" | sort -V | head -n1)" = "$local_version" ]; then
-            echo "version=$current_version" >> $GITHUB_OUTPUT
-            echo "updated=true" >> $GITHUB_OUTPUT
-            # Update API info
-            python scripts/update_endpoints.py tencentcloud-sdk-python/tencentcloud src/pyqcloud_sdk/data
+          python -m pip install --upgrade pip
+          pip install tencentcloud-sdk-python
+
+      - name: Create update branch
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          BRANCH_NAME="update/endpoints-$(date +%Y%m%d-%H%M%S)"
+          git checkout -b $BRANCH_NAME
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+
+      - name: Update endpoints
+        run: |
+          python scripts/update_endpoints.py src/pyqcloud_sdk src/pyqcloud_sdk/data
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
           else
-            echo "version=$local_version" >> $GITHUB_OUTPUT
-            echo "updated=false" >> $GITHUB_OUTPUT
+            echo "changes=false" >> $GITHUB_OUTPUT
           fi
 
-      # - name: Test SDK
-      #   if: steps.check-version.outputs.updated == 'true'
-      #   run: |
-      #     pip install -e.
-      #     python -m pytest tests/
+      - name: Commit and push changes
+        if: steps.check_changes.outputs.changes == 'true'
+        run: |
+          git add src/pyqcloud_sdk/data/endpoints.json src/pyqcloud_sdk/data/.sdk-version
+          git commit -m "chore: update API endpoints and SDK version"
+          git push origin $BRANCH_NAME
 
       - name: Create Pull Request
-        if: steps.check-version.outputs.updated == 'true'
-        uses: peter-evans/create-pull-request@v3
+        if: steps.check_changes.outputs.changes == 'true'
+        uses: peter-evans/create-pull-request@v5
         with:
-          commit-message: "chore: update API endpoints and version to ${{ steps.check-version.outputs.version }}"
-          title: "chore: update API endpoints and version to ${{ steps.check-version.outputs.version }}"
+          title: "chore: update API endpoints and SDK version"
           body: |
-            Automatically update API endpoints data
-            - SDK Version: ${{ steps.check-version.outputs.version }}
-            - Update Time: ${{ github.event.timestamp }}
+            自动更新 API endpoints 和 SDK 版本
 
-            Updates:
-            1. Update endpoints.json
-            2. Update version in pyproject.toml
-          branch: update-endpoints
+            - 更新 endpoints.json
+            - 更新 .sdk-version
+          branch: ${{ env.BRANCH_NAME }}
           base: main
+          labels: automated pr
+          delete-branch: true
