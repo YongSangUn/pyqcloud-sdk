@@ -2,8 +2,8 @@ name: Update API Endpoints
 
 on:
   schedule:
-    - cron: "0 0 * * *" # 每天 UTC 00:00 运行
-  workflow_dispatch: # 允许手动触发
+    - cron: "0 0 * * *" # Run daily at UTC 00:00
+  workflow_dispatch: # Allow manual trigger
 
 jobs:
   update-endpoints:
@@ -16,7 +16,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # 获取完整历史以确保分支操作正常
+          fetch-depth: 0 # Fetch complete history to ensure branch operations work correctly
+      - name: Checkout TencentCloud SDK
+        uses: actions/checkout@v2
+        with:
+          repository: TencentCloud/tencentcloud-sdk-python
+          ref: master
+          path: tencentcloud-sdk-python
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -38,7 +44,9 @@ jobs:
 
       - name: Update endpoints
         run: |
-          python scripts/update_endpoints.py src/pyqcloud_sdk src/pyqcloud_sdk/data
+          python scripts/update_endpoints.py \
+            tencentcloud-sdk-python/tencentcloud \
+            src/pyqcloud_sdk/data
 
       - name: Check for changes
         id: check_changes
@@ -62,11 +70,10 @@ jobs:
         with:
           title: "chore: update API endpoints and SDK version"
           body: |
-            自动更新 API endpoints 和 SDK 版本
-
-            - 更新 endpoints.json
-            - 更新 .sdk-version
+            Automatically update API endpoints and SDK version
+            - Update endpoints.json
+            - Update .sdk-version
           branch: ${{ env.BRANCH_NAME }}
-          base: main
+          base: master
           labels: automated pr
           delete-branch: true
