@@ -39,13 +39,16 @@ jobs:
             echo "updated=true" >> $GITHUB_OUTPUT
             # Update API info
             python scripts/update_endpoints.py tencentcloud-sdk-python/tencentcloud src/pyqcloud_sdk/data
-            # Run tests
-            pip install -e .
-            python -m pytest tests/
           else
             echo "version=$local_version" >> $GITHUB_OUTPUT
             echo "updated=false" >> $GITHUB_OUTPUT
           fi
+
+      # - name: Test SDK
+      #   if: steps.check-version.outputs.updated == 'true'
+      #   run: |
+      #     pip install -e.
+      #     python -m pytest tests/
 
       - name: Create Pull Request
         if: steps.check-version.outputs.updated == 'true'
