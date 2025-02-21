@@ -39,25 +39,6 @@ jobs:
             echo "updated=true" >> $GITHUB_OUTPUT
             # Update API info
             python scripts/update_endpoints.py tencentcloud-sdk-python/tencentcloud src/pyqcloud_sdk/data
-            # Validate endpoints.json format and content
-            python -c '
-            import json
-            import os
-
-            endpoints_file = "src/pyqcloud_sdk/data/endpoints.json"
-            if not os.path.exists(endpoints_file):
-                raise Exception("endpoints.json not found")
-
-            with open(endpoints_file) as f:
-                data = json.load(f)
-
-            if not isinstance(data, dict):
-                raise Exception("Invalid endpoints.json format")
-
-            for service, info in data.items():
-                if not all(key in info for key in ["api_versions", "endpoint", "service"]):
-                    raise Exception(f"Missing required fields in service {service}")
-            '
             # Run tests
             pip install -e .
             python -m pytest tests/

@@ -129,6 +129,31 @@ def save_sdk_version(output_dir: str, version: str):
         f.write(version)
 
 
+def validate_api_info(output_dir: str):
+    """Validate the format and content of endpoints.json file.
+
+    Args:
+        output_dir (str): Directory containing the endpoints.json file.
+
+    Raises:
+        Exception: If validation fails.
+    """
+    output_dir = Path(output_dir)
+    endpoints_file = output_dir / "endpoints.json"
+
+    if not endpoints_file.exists():
+        raise Exception("endpoints.json not found")
+
+    with open(endpoints_file, encoding="utf-8") as f:
+        data = json.load(f)
+
+    if not isinstance(data, dict):
+        raise Exception("Invalid endpoints.json format")
+
+    for service, info in data.items():
+        if not all(key in info for key in ["api_versions", "endpoint", "service"]):
+            raise Exception(f"Missing required fields in service {service}")
+
 def main():
     """Main function to orchestrate the API information extraction process."""
     parser = argparse.ArgumentParser(description="Extract API information from Tencent Cloud SDK")
@@ -146,6 +171,10 @@ def main():
     # Save API information and SDK version
     save_api_info(api_map, args.output_dir, version)
     save_sdk_version(args.output_dir, version)
+
+    # Validate the generated endpoints.json
+    validate_api_info(args.output_dir)
+
     print(f"API information saved to {args.output_dir}/endpoints.json")
     print(f"SDK version {version} saved to {args.output_dir}/.sdk-version")
 
