@@ -68,6 +68,7 @@ jobs:
         if: steps.check_changes.outputs.changes == 'true'
         uses: peter-evans/create-pull-request@v5
         with:
+          token: ${{ secrets.UPDATE_ENDPOINTS }}
           title: "chore: update API endpoints and SDK version"
           body: |
             Automatically update API endpoints and SDK version
