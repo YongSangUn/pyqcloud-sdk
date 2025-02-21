@@ -146,8 +146,8 @@ def main():
     # Save API information and SDK version
     save_api_info(api_map, args.output_dir, version)
     save_sdk_version(args.output_dir, version)
-    print(f"API information saved to {args.output_dir}/endpoints_{version}.json")
-    print(f"SDK version saved to {args.output_dir}/.sdk-version")
+    print(f"API information saved to {args.output_dir}/endpoints.json")
+    print(f"SDK version {version} saved to {args.output_dir}/.sdk-version")
 
 
 if __name__ == "__main__":

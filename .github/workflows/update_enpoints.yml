@@ -23,8 +23,14 @@ jobs:
         id: check-version
         run: |
           current_version=$(pip index versions tencentcloud-sdk-python | grep -m1 'Available versions:' | grep -oP '\d+\.\d+\.\d+' | head -1)
-          echo "version=$current_version" >> $GITHUB_OUTPUT
-          echo "updated=true" >> $GITHUB_OUTPUT
+          local_version=$(cat src/pyqcloud_sdk/data/.sdk-version)
+          if [ "$current_version" != "$local_version" ] && [ "$(printf '%s\n' "$local_version" "$current_version" | sort -V | head -n1)" = "$local_version" ]; then
+            echo "version=$current_version" >> $GITHUB_OUTPUT
+            echo "updated=true" >> $GITHUB_OUTPUT
+          else
+            echo "version=$local_version" >> $GITHUB_OUTPUT
+            echo "updated=false" >> $GITHUB_OUTPUT
+          fi
 
   update-endpoints:
     needs: check-sdk-update
@@ -33,30 +39,41 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Checkout TencentCloud SDK
+        uses: actions/checkout@v2
+        with:
+          repository: TencentCloud/tencentcloud-sdk-python
+          ref: master
+          path: tencentcloud-sdk-python
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: "3.x"
 
-      - name: Install dependencies
-        run: |
-          pip install tencentcloud-sdk-python==${{ needs.check-sdk-update.outputs.new_version }}
-
-      - name: Check for endpoints changes
+      - name: Update API info
         id: check-endpoints
         run: |
-          python scripts/update_endpoints.py src/pyqcloud_sdk src/pyqcloud_sdk/data --check-only
-          if [ $? -eq 0 ]; then
-            echo "No updates needed for endpoints"
-            exit 78  # Custom exit code to indicate no updates needed
-          fi
+          python scripts/update_endpoints.py tencentcloud-sdk-python/tencentcloud src/pyqcloud_sdk/data
+          # Validate endpoints.json format and content
+          python -c '
+          import json
+          import os
 
-      - name: Update API info
-        if: ${{ success() && steps.check-endpoints.outcome != 'failure' }}
-        run: |
-          python scripts/update_endpoints.py src/pyqcloud_sdk src/pyqcloud_sdk/data
-          # Update version in pyproject.toml
-          sed -i "s/version = .*/version = \"${{ needs.check-sdk-update.outputs.new_version }}\"/" pyproject.toml
+          endpoints_file = "src/pyqcloud_sdk/data/endpoints.json"
+          if not os.path.exists(endpoints_file):
+              raise Exception("endpoints.json not found")
+
+          with open(endpoints_file) as f:
+              data = json.load(f)
+
+          if not isinstance(data, dict):
+              raise Exception("Invalid endpoints.json format")
+
+          for service, info in data.items():
+              if not all(key in info for key in ["api_versions", "endpoint", "service"]):
+                  raise Exception(f"Missing required fields in service {service}")
+          '
 
       - name: Run tests
         if: ${{ success() && steps.check-endpoints.outcome != 'failure' }}
