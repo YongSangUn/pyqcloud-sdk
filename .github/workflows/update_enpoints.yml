@@ -15,9 +15,6 @@ on:
 jobs:
   check-sdk-update:
     runs-on: ubuntu-latest
-    outputs:
-      sdk_updated: ${{ steps.check-version.outputs.updated }}
-      new_version: ${{ steps.check-version.outputs.version }}
     steps:
       - uses: actions/checkout@v2
       - name: Checkout TencentCloud SDK
@@ -27,70 +24,57 @@ jobs:
           ref: master
           path: tencentcloud-sdk-python
 
-      - name: Check SDK Version
-        id: check-version
-        run: |
-          current_version=$(grep -oP "(?<=__version__ = ['\"])\d+\.\d+\.\d+(?=['\"])" tencentcloud-sdk-python/tencentcloud/__init__.py 2>/dev/null)
-          local_version=$(cat src/pyqcloud_sdk/data/.sdk-version)
-          if [ "$current_version" != "$local_version" ] && [ "$(printf '%s\n' "$local_version" "$current_version" | sort -V | head -n1)" = "$local_version" ]; then
-            echo "version=$current_version" >> $GITHUB_OUTPUT
-            echo "updated=true" >> $GITHUB_OUTPUT
-          else
-            echo "version=$local_version" >> $GITHUB_OUTPUT
-            echo "updated=false" >> $GITHUB_OUTPUT
-          fi
-
-  update-endpoints:
-    needs: check-sdk-update
-    if: needs.check-sdk-update.outputs.sdk_updated == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: "3.x"
 
-      - name: Update API info
-        id: check-endpoints
+      - name: Check SDK Version and Update Endpoints
+        id: check-version
         run: |
-          python scripts/update_endpoints.py tencentcloud-sdk-python/tencentcloud src/pyqcloud_sdk/data
-          # Validate endpoints.json format and content
-          python -c '
-          import json
-          import os
+          current_version=$(grep -oP "(?<=__version__ = ['\"])[^'\"]*(?=['\"])" tencentcloud-sdk-python/tencentcloud/__init__.py 2>/dev/null)
+          local_version=$(cat src/pyqcloud_sdk/data/.sdk-version)
+          if [ "$current_version" != "$local_version" ] && [ "$(printf '%s\n' "$local_version" "$current_version" | sort -V | head -n1)" = "$local_version" ]; then
+            echo "version=$current_version" >> $GITHUB_OUTPUT
+            echo "updated=true" >> $GITHUB_OUTPUT
+            # Update API info
+            python scripts/update_endpoints.py tencentcloud-sdk-python/tencentcloud src/pyqcloud_sdk/data
+            # Validate endpoints.json format and content
+            python -c '
+            import json
+            import os
 
-          endpoints_file = "src/pyqcloud_sdk/data/endpoints.json"
-          if not os.path.exists(endpoints_file):
-              raise Exception("endpoints.json not found")
+            endpoints_file = "src/pyqcloud_sdk/data/endpoints.json"
+            if not os.path.exists(endpoints_file):
+                raise Exception("endpoints.json not found")
 
-          with open(endpoints_file) as f:
-              data = json.load(f)
+            with open(endpoints_file) as f:
+                data = json.load(f)
 
-          if not isinstance(data, dict):
-              raise Exception("Invalid endpoints.json format")
+            if not isinstance(data, dict):
+                raise Exception("Invalid endpoints.json format")
 
-          for service, info in data.items():
-              if not all(key in info for key in ["api_versions", "endpoint", "service"]):
-                  raise Exception(f"Missing required fields in service {service}")
-          '
-
-      - name: Run tests
-        if: ${{ success() && steps.check-endpoints.outcome != 'failure' }}
-        run: |
-          pip install -e .
-          python -m pytest tests/
+            for service, info in data.items():
+                if not all(key in info for key in ["api_versions", "endpoint", "service"]):
+                    raise Exception(f"Missing required fields in service {service}")
+            '
+            # Run tests
+            pip install -e .
+            python -m pytest tests/
+          else
+            echo "version=$local_version" >> $GITHUB_OUTPUT
+            echo "updated=false" >> $GITHUB_OUTPUT
+          fi
 
       - name: Create Pull Request
-        if: ${{ success() && steps.check-endpoints.outcome != 'failure' }}
+        if: steps.check-version.outputs.updated == 'true'
         uses: peter-evans/create-pull-request@v3
         with:
-          commit-message: "chore: update API endpoints and version to ${{ needs.check-sdk-update.outputs.new_version }}"
-          title: "chore: update API endpoints and version to ${{ needs.check-sdk-update.outputs.new_version }}"
+          commit-message: "chore: update API endpoints and version to ${{ steps.check-version.outputs.version }}"
+          title: "chore: update API endpoints and version to ${{ steps.check-version.outputs.version }}"
           body: |
             Automatically update API endpoints data
-            - SDK Version: ${{ needs.check-sdk-update.outputs.new_version }}
+            - SDK Version: ${{ steps.check-version.outputs.version }}
             - Update Time: ${{ github.event.timestamp }}
 
             Updates:
