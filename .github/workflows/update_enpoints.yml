@@ -19,10 +19,18 @@ jobs:
       sdk_updated: ${{ steps.check-version.outputs.updated }}
       new_version: ${{ steps.check-version.outputs.version }}
     steps:
+      - uses: actions/checkout@v2
+      - name: Checkout TencentCloud SDK
+        uses: actions/checkout@v2
+        with:
+          repository: TencentCloud/tencentcloud-sdk-python
+          ref: master
+          path: tencentcloud-sdk-python
+
       - name: Check SDK Version
         id: check-version
         run: |
-          current_version=$(pip index versions tencentcloud-sdk-python | grep -m1 'Available versions:' | grep -oP '\d+\.\d+\.\d+' | head -1)
+          current_version=$(grep -oP "(?<=__version__ = ['\"])\d+\.\d+\.\d+(?=['\"])" tencentcloud-sdk-python/tencentcloud/__init__.py 2>/dev/null)
           local_version=$(cat src/pyqcloud_sdk/data/.sdk-version)
           if [ "$current_version" != "$local_version" ] && [ "$(printf '%s\n' "$local_version" "$current_version" | sort -V | head -n1)" = "$local_version" ]; then
             echo "version=$current_version" >> $GITHUB_OUTPUT
@@ -38,13 +46,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
-      - name: Checkout TencentCloud SDK
-        uses: actions/checkout@v2
-        with:
-          repository: TencentCloud/tencentcloud-sdk-python
-          ref: master
-          path: tencentcloud-sdk-python
 
       - name: Set up Python
         uses: actions/setup-python@v2
