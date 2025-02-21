@@ -1,82 +1,80 @@
 name: Update API Endpoints
 
 on:
-  # Check upstream SDK updates periodically
   schedule:
-    - cron: "0 0 * * 1" # Run every Monday
-  # Support manual trigger
-  workflow_dispatch:
-    inputs:
-      force_update:
-        description: "Force update"
-        required: false
-        default: false
+    - cron: "0 0 * * *" # Run daily at UTC 00:00
+  workflow_dispatch: # Allow manual trigger
 
 jobs:
-  check-sdk-update:
-    runs-on: ubuntu-latest
-    outputs:
-      sdk_updated: ${{ steps.check-version.outputs.updated }}
-      new_version: ${{ steps.check-version.outputs.version }}
-    steps:
-      - name: Check SDK Version
-        id: check-version
-        run: |
-          current_version=$(pip index versions tencentcloud-sdk-python | grep -m1 'Available versions:' | grep -oP '\d+\.\d+\.\d+' | head -1)
-          echo "version=$current_version" >> $GITHUB_OUTPUT
-          echo "updated=true" >> $GITHUB_OUTPUT
-
   update-endpoints:
-    needs: check-sdk-update
-    if: needs.check-sdk-update.outputs.sdk_updated == 'true'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch complete history to ensure branch operations work correctly
+      - name: Checkout TencentCloud SDK
+        uses: actions/checkout@v2
+        with:
+          repository: TencentCloud/tencentcloud-sdk-python
+          ref: master
+          path: tencentcloud-sdk-python
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: "3.x"
 
       - name: Install dependencies
         run: |
-          pip install tencentcloud-sdk-python==${{ needs.check-sdk-update.outputs.new_version }}
+          python -m pip install --upgrade pip
+          pip install tencentcloud-sdk-python
 
-      - name: Check for endpoints changes
-        id: check-endpoints
+      - name: Create update branch
         run: |
-          python scripts/update_endpoints.py src/pyqcloud_sdk src/pyqcloud_sdk/data --check-only
-          if [ $? -eq 0 ]; then
-            echo "No updates needed for endpoints"
-            exit 78  # Custom exit code to indicate no updates needed
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          BRANCH_NAME="update/endpoints-$(date +%Y%m%d-%H%M%S)"
+          git checkout -b $BRANCH_NAME
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+
+      - name: Update endpoints
+        run: |
+          python scripts/update_endpoints.py \
+            tencentcloud-sdk-python/tencentcloud \
+            src/pyqcloud_sdk/data
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Update API info
-        if: ${{ success() && steps.check-endpoints.outcome != 'failure' }}
+      - name: Commit and push changes
+        if: steps.check_changes.outputs.changes == 'true'
         run: |
-          python scripts/update_endpoints.py src/pyqcloud_sdk src/pyqcloud_sdk/data
-          # Update version in pyproject.toml
-          sed -i "s/version = .*/version = \"${{ needs.check-sdk-update.outputs.new_version }}\"/" pyproject.toml
-
-      - name: Run tests
-        if: ${{ success() && steps.check-endpoints.outcome != 'failure' }}
-        run: |
-          pip install -e .
-          python -m pytest tests/
+          git add src/pyqcloud_sdk/data/endpoints.json src/pyqcloud_sdk/data/.sdk-version
+          git commit -m "chore: update API endpoints and SDK version"
+          git push origin $BRANCH_NAME
 
       - name: Create Pull Request
-        if: ${{ success() && steps.check-endpoints.outcome != 'failure' }}
-        uses: peter-evans/create-pull-request@v3
+        if: steps.check_changes.outputs.changes == 'true'
+        uses: peter-evans/create-pull-request@v5
         with:
-          commit-message: "chore: update API endpoints and version to ${{ needs.check-sdk-update.outputs.new_version }}"
-          title: "chore: update API endpoints and version to ${{ needs.check-sdk-update.outputs.new_version }}"
+          token: ${{ secrets.UPDATE_ENDPOINTS }}
+          title: "chore: update API endpoints and SDK version"
           body: |
-            Automatically update API endpoints data
-            - SDK Version: ${{ needs.check-sdk-update.outputs.new_version }}
-            - Update Time: ${{ github.event.timestamp }}
-
-            Updates:
-            1. Update endpoints.json
-            2. Update version in pyproject.toml
-          branch: update-endpoints
-          base: main
+            Automatically update API endpoints and SDK version
+            - Update endpoints.json
+            - Update .sdk-version
+          branch: ${{ env.BRANCH_NAME }}
+          base: master
+          labels: automated pr
+          delete-branch: true
