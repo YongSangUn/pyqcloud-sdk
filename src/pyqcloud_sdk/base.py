@@ -35,6 +35,9 @@ class QcloudBase:
         self.config = Config()
         self.config._deserialize(service_config)
         self.client = client
+        # Store custom environment variable names
+        self._secret_id_env_name = None
+        self._secret_key_env_name = None
 
     def set_region(self, region: str):
         """
@@ -66,23 +69,46 @@ class QcloudBase:
         self.config.SecretId = secret_id
         logger.info("SecretId set.")
 
+    def set_secret_id_env_name(self, env_name: str):
+        """
+        Sets the environment variable name for SecretId.
+
+        Args:
+            env_name (str): The environment variable name for SecretId.
+        """
+        self._secret_id_env_name = env_name
+        logger.info(f"SecretId environment variable name set to: {env_name}")
+
+    def set_secret_key_env_name(self, env_name: str):
+        """
+        Sets the environment variable name for SecretKey.
+
+        Args:
+            env_name (str): The environment variable name for SecretKey.
+        """
+        self._secret_key_env_name = env_name
+        logger.info(f"SecretKey environment variable name set to: {env_name}")
+
     def _try_set_secret_from_env(
         self,
-        id_env_name: str = "TENCENTCLOUD_SECRET_ID",
-        key_env_name: str = "TENCENTCLOUD_SECRET_KEY",
+        id_env_name: str = None,
+        key_env_name: str = None,
     ) -> bool:
         """
         Attempts to set the SecretId and SecretKey from environment variables.
 
         Args:
             id_env_name (str, optional): The environment variable name for SecretId.
-                                        Defaults to "TENCENTCLOUD_SECRET_ID".
+                                        Defaults to Config.ENV_SECRET_ID.
             key_env_name (str, optional): The environment variable name for SecretKey.
-                                        Defaults to "TENCENTCLOUD_SECRET_KEY".
+                                        Defaults to Config.ENV_SECRET_KEY.
 
         Returns:
             bool: True if successful, False otherwise.
         """
+        id_env_name = id_env_name or self.config.ENV_SECRET_ID
+        key_env_name = key_env_name or self.config.ENV_SECRET_KEY
+
         secret_id = os.environ.get(id_env_name)
         secret_key = os.environ.get(key_env_name)
         if not secret_id or not secret_key:
@@ -108,7 +134,10 @@ class QcloudBase:
 
         if not self.config.SecretId or not self.config.SecretKey:
             logger.warning("SecretId or SecretKey is None, attempting to use environment values.")
-            if not self._try_set_secret_from_env():
+            if not self._try_set_secret_from_env(
+                id_env_name=self._secret_id_env_name,
+                key_env_name=self._secret_key_env_name
+            ):
                 raise AuthenticationError("SecretId or SecretKey is not set")
 
         cred = Credential(self.config.SecretId, self.config.SecretKey)

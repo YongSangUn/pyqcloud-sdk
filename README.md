@@ -38,7 +38,7 @@ setup_logging(level=logging.INFO)
 service = Services(
     name="cvm",                   # Service name, required
     region="ap-guangzhou",        # Region, required
-  secret_id="your_secret_id",     # Optional, default reads from environment variable
+    secret_id="your_secret_id",   # Optional, default reads from environment variable
     secret_key="your_secret_key", # Optional, default reads from environment variable
     version="2017-03-12"          # Optional, API version, default is the latest version
 )
@@ -53,10 +53,21 @@ print(response)
 It is recommended to set authentication information using environment variables:
 
 - Default reads `TENCENTCLOUD_SECRET_ID` and `TENCENTCLOUD_SECRET_KEY`
-- Use `set_secret_from_env()` to specify custom environment variable names:
+- Use `secret_id_env_name` and `secret_key_env_name` parameters to specify custom environment variable names:
 
 ```python
-service.set_secret_from_env('CUSTOM_ID_ENV', 'CUSTOM_KEY_ENV')
+service = Services(
+    name="cvm",
+    region="ap-guangzhou",
+    secret_id_env_name='CUSTOM_ID_ENV',    # Custom environment variable name for SecretId
+    secret_key_env_name='CUSTOM_KEY_ENV'   # Custom environment variable name for SecretKey
+)
+```
+
+Set your custom environment variables:
+```bash
+export CUSTOM_ID_ENV=your_secret_id
+export CUSTOM_KEY_ENV=your_secret_key
 ```
 
 ## Error Handling
