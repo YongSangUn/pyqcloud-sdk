@@ -53,10 +53,21 @@ print(response)
 推荐使用环境变量设置认证信息：
 
 - 默认读取 `TENCENTCLOUD_SECRET_ID` 和 `TENCENTCLOUD_SECRET_KEY`
-- 使用 `set_secret_from_env()` 指定自定义环境变量名：
+- 使用 `secret_id_env_name` 和 `secret_key_env_name` 参数指定自定义环境变量名：
 
 ```python
-service.set_secret_from_env('CUSTOM_ID_ENV', 'CUSTOM_KEY_ENV')
+service = Services(
+    name="cvm",
+    region="ap-guangzhou",
+    secret_id_env_name='CUSTOM_ID_ENV',    # 自定义SecretId环境变量名
+    secret_key_env_name='CUSTOM_KEY_ENV'   # 自定义SecretKey环境变量名
+)
+```
+
+设置您的自定义环境变量：
+```bash
+export CUSTOM_ID_ENV=your_secret_id
+export CUSTOM_KEY_ENV=your_secret_key
 ```
 
 ## 错误处理

@@ -5,13 +5,9 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Dict, List, Optional
 
-from .logging import logger
 from .base import QcloudBase
-from .exceptions import (
-    ServiceDefinitionError,
-    ServiceDiscoveryError,
-    ServiceNotFoundError,
-)
+from .exceptions import ServiceDefinitionError, ServiceDiscoveryError, ServiceNotFoundError
+from .logging import logger
 
 
 class Services(QcloudBase):
@@ -24,6 +20,8 @@ class Services(QcloudBase):
         secret_id: Optional[str] = None,
         secret_key: Optional[str] = None,
         version: Optional[str] = None,
+        secret_id_env_name: Optional[str] = None,
+        secret_key_env_name: Optional[str] = None,
     ):
         """
         Initializes a Services object.
@@ -34,12 +32,19 @@ class Services(QcloudBase):
             secret_id (Optional[str], optional): The Tencent Cloud SecretId. Defaults to None.
             secret_key (Optional[str], optional): The Tencent Cloud SecretKey. Defaults to None.
             version (Optional[str], optional): The API version of the service. Defaults to None.
+            secret_id_env_name (Optional[str], optional): Environment variable name for SecretId.
+                                                        Defaults to None (uses standard names).
+            secret_key_env_name (Optional[str], optional): Environment variable name for SecretKey.
+                                                         Defaults to None (uses standard names).
 
         Raises:
             ServiceDiscoveryError: If there's an error during service discovery.
         """
         self._v = version
         self._n = name
+        self._secret_id_env_name = secret_id_env_name
+        self._secret_key_env_name = secret_key_env_name
+
         _info = self._load_api_info()
         _d = _info.get(name)
         self._check(_d)
@@ -57,6 +62,17 @@ class Services(QcloudBase):
                 "SecretKey": secret_key,
             },
         )
+
+        # Set custom environment variable names in base class
+        if secret_id_env_name:
+            self.set_secret_id_env_name(secret_id_env_name)
+        if secret_key_env_name:
+            self.set_secret_key_env_name(secret_key_env_name)
+
+        # Try to load secrets from environment variables if not provided
+        if not secret_id or not secret_key:
+            self._try_set_secret_from_env(id_env_name=secret_id_env_name, key_env_name=secret_key_env_name)
+
         logger.info(f"Service initialized: {self._n} in region: {region}")
 
     def _check(self, data):

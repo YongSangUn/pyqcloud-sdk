@@ -1,19 +1,60 @@
 # -*- coding: utf-8 -*-
 
+import os
 from .logging import logger
 
 
 class Config(object):
     """Configuration settings for the Tencent Cloud client."""
 
-    def __init__(self):
-        """Initializes a Config object with default values."""
+    # Environment variable names for credentials
+    ENV_SECRET_ID = "TENCENTCLOUD_SECRET_ID"
+    ENV_SECRET_KEY = "TENCENTCLOUD_SECRET_KEY"
+
+    def __init__(self, auto_load_env: bool = False):
+        """
+        Initializes a Config object with default values.
+
+        Args:
+            auto_load_env (bool): Whether to automatically load credentials from environment variables.
+                                Defaults to False for backward compatibility.
+        """
         self.Module = None
         self.Version = None
         self.EndPoint = None
         self.Region = None
         self.SecretId = None
         self.SecretKey = None
+
+        if auto_load_env:
+            self.load_from_env()
+
+    def load_from_env(self, id_env_name: str = None, key_env_name: str = None):
+        """
+        Loads SecretId and SecretKey from environment variables.
+
+        Args:
+            id_env_name (str, optional): Environment variable name for SecretId.
+                                       Defaults to self.ENV_SECRET_ID.
+            key_env_name (str, optional): Environment variable name for SecretKey.
+                                        Defaults to self.ENV_SECRET_KEY.
+        """
+        id_env_name = id_env_name or self.ENV_SECRET_ID
+        key_env_name = key_env_name or self.ENV_SECRET_KEY
+
+        secret_id = os.environ.get(id_env_name)
+        secret_key = os.environ.get(key_env_name)
+
+        if secret_id:
+            self.SecretId = secret_id
+            logger.info(f"SecretId loaded from environment variable: {id_env_name}")
+
+        if secret_key:
+            self.SecretKey = secret_key
+            logger.info(f"SecretKey loaded from environment variable: {key_env_name}")
+
+        if not secret_id or not secret_key:
+            logger.warning(f"Environment variables {id_env_name} or {key_env_name} are not set.")
 
     def _deserialize(self, config: dict):
         """
